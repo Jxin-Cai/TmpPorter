@@ -3,7 +3,7 @@ package com.jxin.plug.action;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.components.ServiceManager;
-import com.jxin.plug.core.ddd.repository.INodeRepository;
+import com.jxin.plug.core.level.repository.INodeRepository;
 import com.jxin.plug.util.RunTimeUtil;
 import lombok.extern.slf4j.Slf4j;
 

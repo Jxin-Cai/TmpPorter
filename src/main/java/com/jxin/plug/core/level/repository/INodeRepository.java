@@ -1,6 +1,6 @@
-package com.jxin.plug.core.ddd.repository;
+package com.jxin.plug.core.level.repository;
 
-import com.jxin.plug.core.ddd.mode.Node;
+import com.jxin.plug.core.level.mode.Node;
 
 import java.util.Set;
 

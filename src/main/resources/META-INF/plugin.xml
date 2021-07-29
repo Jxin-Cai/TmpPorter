@@ -14,8 +14,8 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <applicationService serviceInterface="com.jxin.plug.core.ddd.repository.INodeRepository"
-                serviceImplementation="com.jxin.plug.core.ddd.repository.NodeRepository"/>
+        <applicationService serviceInterface="com.jxin.plug.core.level.repository.INodeRepository"
+                serviceImplementation="com.jxin.plug.core.level.repository.NodeRepository"/>
 
     </extensions>
 

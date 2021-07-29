@@ -1,4 +1,4 @@
-package com.jxin.plug.core.ddd.repository.data;
+package com.jxin.plug.core.level.repository.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

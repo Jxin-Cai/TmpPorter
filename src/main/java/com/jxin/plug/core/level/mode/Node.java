@@ -1,7 +1,7 @@
-package com.jxin.plug.core.ddd.mode;
+package com.jxin.plug.core.level.mode;
 
 import com.alibaba.fastjson.JSON;
-import com.jxin.plug.core.ddd.consts.NodeEnum;
+import com.jxin.plug.core.level.consts.NodeEnum;
 import lombok.Data;
 
 import java.util.List;

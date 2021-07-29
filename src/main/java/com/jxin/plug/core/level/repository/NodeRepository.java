@@ -1,10 +1,10 @@
-package com.jxin.plug.core.ddd.repository;
+package com.jxin.plug.core.level.repository;
 
 import com.google.common.collect.Maps;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
-import com.jxin.plug.core.ddd.mode.Node;
+import com.jxin.plug.core.level.mode.Node;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

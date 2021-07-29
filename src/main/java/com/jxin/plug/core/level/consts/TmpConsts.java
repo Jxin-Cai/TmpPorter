@@ -1,4 +1,4 @@
-package com.jxin.plug.core.ddd.consts;
+package com.jxin.plug.core.level.consts;
 
 /**
  * 模板的常量
@@ -7,5 +7,5 @@ package com.jxin.plug.core.ddd.consts;
  */
 public interface TmpConsts {
     String BASE_PACKAGE = "com.jxin.plug.core.ddd.tmp";
-    String TEMP_PATH = "com/jxin/plug/core/ddd/tmp";
+    String TEMP_PATH = "com/jxin/plug/core/level/tmp";
 }

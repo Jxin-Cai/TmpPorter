@@ -1,4 +1,4 @@
-package com.jxin.plug.core.ddd.consts;
+package com.jxin.plug.core.level.consts;
 
 /**
  * 节点枚举

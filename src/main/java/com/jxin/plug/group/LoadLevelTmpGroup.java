@@ -3,8 +3,7 @@ package com.jxin.plug.group;
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.components.ServiceManager;
 import com.jxin.plug.action.LoadLevelTmpAction;
-import com.jxin.plug.core.ddd.repository.INodeRepository;
-import com.jxin.plug.core.ddd.repository.NodeRepository;
+import com.jxin.plug.core.level.repository.INodeRepository;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
