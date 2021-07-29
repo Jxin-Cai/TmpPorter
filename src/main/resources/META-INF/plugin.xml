@@ -1,0 +1,42 @@
+<idea-plugin>
+    <id>com.jxin.plug-study</id>
+    <name>Plugin display name here</name>
+    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+    <description><![CDATA[
+    Enter short description for your plugin here.<br>
+    <em>most HTML tags may be used</em>
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <applicationService serviceInterface="com.jxin.plug.core.ddd.repository.INodeRepository"
+                serviceImplementation="com.jxin.plug.core.ddd.repository.NodeRepository"/>
+
+    </extensions>
+
+    <actions>
+
+        <group id="Level Tmp" text="Level Tmp" popup="true">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="ReplaceInPath"/>
+        </group>
+        <action id="Level Tmp Add" class="com.jxin.plug.action.AddLevelTmpAction" text="添加分层模板" description="添加分层模板">
+            <add-to-group group-id="Level Tmp" anchor="last"/>
+        </action>
+        <group id="Load Level Tmp Group"
+               class="com.jxin.plug.group.LoadLevelTmpGroup" text="加载模板分组"
+               description="Load Level Tmp Group" popup="true">
+            <add-to-group group-id="Level Tmp" anchor="after" relative-to-action="ReplaceInPath"/>
+        </group>
+        <group id="Remove Level Tmp Group"
+               class="com.jxin.plug.group.RemoveLevelTmpGroup" text="删除模板分组"
+               description="Remove Level Tmp Group" popup="true">
+            <add-to-group group-id="Level Tmp" anchor="after" relative-to-action="ReplaceInPath"/>
+        </group>
+
+    </actions>
+</idea-plugin>
