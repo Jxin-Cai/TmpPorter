@@ -16,7 +16,11 @@ public interface INodeRepository{
      * @return 所有模板名称
      */
     Set<String> allTmpKey();
-
+    /**
+     * 获取所有模板名称(不包括初始化的模板)
+     * @return 所有模板名称
+     */
+    Set<String> allTmpKeyWithoutInitKey();
     /**
      * 获取模板
      * @param  key 模板名称

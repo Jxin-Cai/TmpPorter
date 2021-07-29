@@ -29,7 +29,7 @@ public class RemoveLevelTmpGroup extends ActionGroup {
         if (project == null) {
             return AnAction.EMPTY_ARRAY;
         }
-        return nodeRepository.allTmpKey()
+        return nodeRepository.allTmpKeyWithoutInitKey()
                              .stream()
                              .map(this::getOrCreateAction)
                              .toArray(AnAction[]::new);

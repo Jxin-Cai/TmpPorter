@@ -20,6 +20,8 @@ public class RemoveLevelTmpAction extends AnAction {
     public RemoveLevelTmpAction(String key) {
         this.key = key;
         this.nodeRepository = ServiceManager.getService(INodeRepository.class);
+        getTemplatePresentation().setDescription("");
+        getTemplatePresentation().setText(key, false);
     }
     @Override
     public void actionPerformed(AnActionEvent e) {
