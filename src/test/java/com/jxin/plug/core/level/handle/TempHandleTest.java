@@ -14,7 +14,9 @@ public class TempHandleTest {
 
     @Test
     public void createTemp() {
-        final Node temp = TempHandle.createTemp("/Users/jxin/javaPro/work/TmpPorter/src/test/java/com/jxin/plug/core/level/tmp/top", "com.jxin.plug.core.level.tmp.top");
-        System.out.println(temp.dump());
+        final Node top = TempHandle.createTemp("/Users/jxin/javaPro/work/TmpPorter/src/test/java/com/jxin/plug/core/level/tmp/top", "com.jxin.plug.core.level.tmp.top");
+        System.out.println(top.dump());
+        final Node aggregation = TempHandle.createTemp("/Users/jxin/javaPro/work/TmpPorter/src/test/java/com/jxin/plug/core/level/tmp/aggregation", "com.jxin.plug.core.level.tmp.aggregation");
+        System.out.println(aggregation.dump());
     }
 }
