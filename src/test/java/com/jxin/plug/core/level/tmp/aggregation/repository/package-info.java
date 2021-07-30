@@ -1,8 +1,7 @@
 /**
  *
- * 仓库层
- * 表结构到数据模型的一一映射
+ * 仓储层
+ * 处理聚合的持久化
  * @author Jxin
- * @version 1.0
  */
 package com.jxin.plug.core.level.tmp.aggregation.repository;
