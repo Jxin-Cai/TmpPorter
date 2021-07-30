@@ -5,12 +5,11 @@ import com.jxin.plug.core.level.consts.NodeEnum;
 import com.jxin.plug.core.level.mode.Node;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.apache.commons.compress.utils.Sets;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -20,10 +19,14 @@ import java.util.stream.Collectors;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class TempHandle {
-
+    private static final Set<String> KEEP_FILE_NAME =
+            Sets.newHashSet("package-info.java",
+                            "pom.xml",
+                            ".gitignore"
+            );
     public static Node createTemp(String path, String basePackage){
         final var tempRoot = new File(path);
-        final Node ret = new Node();
+        final var ret = new Node();
         ret.setName(tempRoot.getName());
         ret.setBasePackage(basePackage);
         ret.setType(NodeEnum.ROOT.name());
@@ -41,7 +44,7 @@ public final class TempHandle {
         return getFileNode(file);
     }
     private static Node getDirNode(File file){
-        final Node ret = new Node();
+        final var ret = new Node();
         ret.setName(file.getName());
         ret.setType(NodeEnum.DIR.name());
         ret.setAbsolutePath(file.getAbsolutePath());
@@ -55,11 +58,16 @@ public final class TempHandle {
         }
         return Arrays.stream(files)
                      .map(TempHandle::getNode)
+                     .filter(Objects::nonNull)
                      .collect(Collectors.toList());
     }
     private static Node getFileNode(File file){
-        final Node ret = new Node();
-        ret.setName(file.getName());
+        final String name = file.getName();
+        if(!KEEP_FILE_NAME.contains(name)){
+            return null;
+        }
+        final var ret = new Node();
+        ret.setName(name);
         ret.setType(NodeEnum.FILE.name());
         ret.setAbsolutePath(file.getAbsolutePath());
         ret.setContext(FileUtil.readUtf8String(file));

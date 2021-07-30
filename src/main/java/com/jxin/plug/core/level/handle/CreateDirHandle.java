@@ -40,9 +40,8 @@ public class CreateDirHandle {
         createFile(node);
     }
     private void createDir(Node node){
-        final String name = node.getName();
         final String newAbsolutePath = getNewAbsolutePath(node);
-        new File(newAbsolutePath, name);
+        FileUtil.file(newAbsolutePath);
         final List<Node> childNode = node.getChildNode();
         if(CollectionUtils.isEmpty(childNode)){
             return;
