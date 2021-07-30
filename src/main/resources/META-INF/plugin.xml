@@ -4,7 +4,7 @@
     <vendor email="105760730@qq.com">Jxin</vendor>
 
     <description>模板搬运工</description>
-
+    <idea-version since-build="183.2407.10"/>
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
