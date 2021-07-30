@@ -6,4 +6,4 @@
  * 2.隔离外部依赖
  * @author Jxin
  */
-package com.jxin.plug.core.level.tmp.aggregation.factory.param;
+package com.jxin.plug.core.level.tmp.top.domain.service.acl.param;
