@@ -22,10 +22,12 @@ dependencies {
 }
 
 intellij {
+    pluginName 'TmpPorter'
+    updateSinceUntilBuild false
     version '2020.2.3'
 }
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+    
+     <em>我们不是模板的生产者,我们只是模板的搬运工</em>"""
 }
