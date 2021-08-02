@@ -4,10 +4,12 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.components.ServiceManager;
+import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtilCore;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.jxin.plug.core.level.handle.CreateDirHandle;
+import com.jxin.plug.core.level.mode.Node;
 import com.jxin.plug.core.level.repository.INodeRepository;
 import com.jxin.plug.util.RunTimeUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -35,10 +37,10 @@ public class LoadLevelTmpAction extends AnAction {
             return;
         }
 
-        final var virtualDir = getDirVirtualFile(e);
-        final var basePackage = getBasePackage(e, virtualDir);
-        final var node = nodeRepository.get(key);
-        final var createDirHandle = new CreateDirHandle();
+        final VirtualFile virtualDir = getDirVirtualFile(e);
+        final String basePackage = getBasePackage(e, virtualDir);
+        final Node node = nodeRepository.get(key);
+        final CreateDirHandle createDirHandle = new CreateDirHandle();
         createDirHandle.setBasePackage(basePackage);
         createDirHandle.setAbsolutePath(virtualDir.getPath());
         createDirHandle.setRootNode(node);
@@ -48,8 +50,8 @@ public class LoadLevelTmpAction extends AnAction {
     }
     @NotNull
     private String getBasePackage(AnActionEvent e, VirtualFile virtualDir) {
-        final var module = ModuleUtilCore.findModuleForFile(virtualDir, e.getProject());
-        final var moduleRootPath = ModuleRootManager.getInstance(module).getContentRoots()[0].getPath();
+        final Module module = ModuleUtilCore.findModuleForFile(virtualDir, e.getProject());
+        final String moduleRootPath = ModuleRootManager.getInstance(module).getContentRoots()[0].getPath();
         return StringUtils.substringAfter(virtualDir.getPath(), moduleRootPath + "/src/main/java/")
                 .replace("/", ".");
     }
@@ -60,7 +62,7 @@ public class LoadLevelTmpAction extends AnAction {
      * @return 光标所在的文件夹
      */
     private VirtualFile getDirVirtualFile(AnActionEvent e) {
-        final var virtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE);
+        final VirtualFile virtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE);
         if (!virtualFile.isDirectory()) {
             return virtualFile.getParent();
         }

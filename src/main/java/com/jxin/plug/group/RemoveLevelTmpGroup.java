@@ -2,6 +2,7 @@ package com.jxin.plug.group;
 
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.components.ServiceManager;
+import com.intellij.openapi.project.Project;
 import com.jxin.plug.action.RemoveLevelTmpAction;
 import com.jxin.plug.core.level.repository.INodeRepository;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +26,7 @@ public class RemoveLevelTmpGroup extends ActionGroup {
         if (anActionEvent == null) {
             return AnAction.EMPTY_ARRAY;
         }
-        final var project = PlatformDataKeys.PROJECT.getData(anActionEvent.getDataContext());
+        final Project project = PlatformDataKeys.PROJECT.getData(anActionEvent.getDataContext());
         if (project == null) {
             return AnAction.EMPTY_ARRAY;
         }
@@ -44,7 +45,7 @@ public class RemoveLevelTmpGroup extends ActionGroup {
         return createAction(actionId, key);
     }
     private AnAction createAction(String actionId, String key) {
-        final var action = new RemoveLevelTmpAction(key);
+        final RemoveLevelTmpAction action = new RemoveLevelTmpAction(key);
         ActionManager.getInstance().registerAction(actionId, action);
         return action;
     }

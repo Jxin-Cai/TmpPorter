@@ -4,10 +4,12 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.components.ServiceManager;
+import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtilCore;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.jxin.plug.core.level.handle.TempHandle;
+import com.jxin.plug.core.level.mode.Node;
 import com.jxin.plug.core.level.repository.INodeRepository;
 import com.jxin.plug.util.RunTimeUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +33,9 @@ public class AddLevelTmpAction extends AnAction {
             return;
         }
 
-        final var virtualDir = getDirVirtualFile(e);
-        final var basePackage = getBasePackage(e, virtualDir);
-        final var node = TempHandle.createTemp(virtualDir.getPath(), basePackage);
+        final VirtualFile virtualDir = getDirVirtualFile(e);
+        final String basePackage = getBasePackage(e, virtualDir);
+        final Node node = TempHandle.createTemp(virtualDir.getPath(), basePackage);
         nodeRepository.add(node.getName(), node);
     }
 
@@ -43,7 +45,7 @@ public class AddLevelTmpAction extends AnAction {
      * @return 光标所在的文件夹
      */
     private VirtualFile getDirVirtualFile(AnActionEvent e) {
-        final var virtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE);
+        final VirtualFile virtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE);
         if (!virtualFile.isDirectory()) {
             return virtualFile.getParent();
         }
@@ -51,8 +53,8 @@ public class AddLevelTmpAction extends AnAction {
     }
     @NotNull
     private String getBasePackage(AnActionEvent e, VirtualFile virtualDir) {
-        final var module = ModuleUtilCore.findModuleForFile(virtualDir, e.getProject());
-        final var moduleRootPath = ModuleRootManager.getInstance(module).getContentRoots()[0].getPath();
+        final Module module = ModuleUtilCore.findModuleForFile(virtualDir, e.getProject());
+        final String moduleRootPath = ModuleRootManager.getInstance(module).getContentRoots()[0].getPath();
         return StringUtils.substringAfter(virtualDir.getPath(), moduleRootPath + "/src/main/java/")
                 .replace("/", ".");
     }

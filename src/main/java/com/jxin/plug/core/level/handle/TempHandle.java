@@ -25,8 +25,8 @@ public final class TempHandle {
                             ".gitignore"
             );
     public static Node createTemp(String path, String basePackage){
-        final var tempRoot = new File(path);
-        final var ret = new Node();
+        final File tempRoot = new File(path);
+        final Node ret = new Node();
         ret.setName(tempRoot.getName());
         ret.setBasePackage(basePackage);
         ret.setType(NodeEnum.ROOT.name());
@@ -44,7 +44,7 @@ public final class TempHandle {
         return getFileNode(file);
     }
     private static Node getDirNode(File file){
-        final var ret = new Node();
+        final Node ret = new Node();
         ret.setName(file.getName());
         ret.setType(NodeEnum.DIR.name());
         ret.setAbsolutePath(file.getAbsolutePath());
@@ -66,7 +66,7 @@ public final class TempHandle {
         if(!KEEP_FILE_NAME.contains(name)){
             return null;
         }
-        final var ret = new Node();
+        final Node ret = new Node();
         ret.setName(name);
         ret.setType(NodeEnum.FILE.name());
         ret.setAbsolutePath(file.getAbsolutePath());

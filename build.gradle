@@ -26,6 +26,9 @@ intellij {
     updateSinceUntilBuild false
     version '2020.2.3'
 }
+apply plugin: 'java'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 patchPluginXml {
     changeNotes """
     
