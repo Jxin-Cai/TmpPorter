@@ -4,17 +4,13 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.components.ServiceManager;
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleUtilCore;
-import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.jxin.plug.core.level.handle.TempHandle;
 import com.jxin.plug.core.level.mode.Node;
 import com.jxin.plug.core.level.repository.INodeRepository;
 import com.jxin.plug.util.RunTimeUtil;
+import com.jxin.plug.util.VirtualFileUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * 添加分层模板
@@ -34,7 +30,7 @@ public class AddLevelTmpAction extends AnAction {
         }
 
         final VirtualFile virtualDir = getDirVirtualFile(e);
-        final String basePackage = getBasePackage(e, virtualDir);
+        final String basePackage = VirtualFileUtil.getBasePackage(e, virtualDir);
         final Node node = TempHandle.createTemp(virtualDir.getPath(), basePackage);
         nodeRepository.add(node.getName(), node);
     }
@@ -50,12 +46,5 @@ public class AddLevelTmpAction extends AnAction {
             return virtualFile.getParent();
         }
         return virtualFile;
-    }
-    @NotNull
-    private String getBasePackage(AnActionEvent e, VirtualFile virtualDir) {
-        final Module module = ModuleUtilCore.findModuleForFile(virtualDir, e.getProject());
-        final String moduleRootPath = ModuleRootManager.getInstance(module).getContentRoots()[0].getPath();
-        return StringUtils.substringAfter(virtualDir.getPath(), moduleRootPath + "/src/main/java/")
-                .replace("/", ".");
     }
 }

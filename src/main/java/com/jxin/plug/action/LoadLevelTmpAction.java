@@ -12,6 +12,7 @@ import com.jxin.plug.core.level.handle.CreateDirHandle;
 import com.jxin.plug.core.level.mode.Node;
 import com.jxin.plug.core.level.repository.INodeRepository;
 import com.jxin.plug.util.RunTimeUtil;
+import com.jxin.plug.util.VirtualFileUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,7 +39,7 @@ public class LoadLevelTmpAction extends AnAction {
         }
 
         final VirtualFile virtualDir = getDirVirtualFile(e);
-        final String basePackage = getBasePackage(e, virtualDir);
+        final String basePackage = VirtualFileUtil.getBasePackage(e, virtualDir);
         final Node node = nodeRepository.get(key);
         final CreateDirHandle createDirHandle = new CreateDirHandle();
         createDirHandle.setBasePackage(basePackage);
@@ -47,13 +48,6 @@ public class LoadLevelTmpAction extends AnAction {
 
         createDirHandle.createTmpDir();
 
-    }
-    @NotNull
-    private String getBasePackage(AnActionEvent e, VirtualFile virtualDir) {
-        final Module module = ModuleUtilCore.findModuleForFile(virtualDir, e.getProject());
-        final String moduleRootPath = ModuleRootManager.getInstance(module).getContentRoots()[0].getPath();
-        return StringUtils.substringAfter(virtualDir.getPath(), moduleRootPath + "/src/main/java/")
-                .replace("/", ".");
     }
 
     /**
